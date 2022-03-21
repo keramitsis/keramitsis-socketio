@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="author" content="Christos Keramitsis">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#000000">
+	<meta name="description" content="Christos Keramitsis - Front End Web Developer.">
+	<title>🚀 Christos Keramitsis</title> 
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<script>!function(e,a,t,n,g,c,o){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),o=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script",0,"ga"),ga("create","UA-37492817-2","auto"),ga("send","pageview");</script>
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+	<header><h1><a href="javascript:iLikeCats('nbjmup+DisjtuptLfsAnjutjt/ofu');"><span>Christos Keramitsis</span></a></h1><p>Front End Web Developer</p></header>
+	<div id='sd0'></div><div id='sd1'></div>
+	<div class="cursor"><div class="cursor__inner cursor__inner--circle"></div></div>
+	<script>function iLikeCats(e){location.href=decryptString(e,-1)}function decryptCharcode(e,t,r,n){return e+=n,n>0&&e>r?e=t+(e-r-1):n<0&&e<t&&(e=r-(t-e-1)),String.fromCharCode(e)}function decryptString(e,t){for(var r="",n=e.length,a=0;a<n;a++){var c=e.charCodeAt(a);r+=c>=43&&c<=58?decryptCharcode(c,43,58,t):c>=64&&c<=90?decryptCharcode(c,64,90,t):c>=97&&c<=122?decryptCharcode(c,97,122,t):e.charAt(a)}return r}document.getElementsByTagName("span")[0].innerHTML="ten.sistim@reKsotsirhC",document.getElementsByTagName("html")[0].className="js";</script>
+	<script>console.log('%c Konami Code ... ','background: #222; color: lime; font-weight: bold; font-size: 20px;');let allowedKeys={37:'left',38:'up',39:'right',40:'down',65:'a',66:'b'};let konamiCode=['up','up','down','down','left','right','left','right','b','a'];let audio=new Audio('audio/achievment_02.mp3');let konamiCodePosition=0;document.addEventListener('keydown',function(e){let key=allowedKeys[e.keyCode];let requiredKey=konamiCode[konamiCodePosition];if(key==requiredKey){konamiCodePosition++;if(konamiCodePosition===konamiCode.length){activateCheats();konamiCodePosition=0}}else{konamiCodePosition=0}});function activateCheats(){let audio=new Audio('audio/achievment_02.mp3');audio.play();body.classList.add('speed');console.log('%c Konami Code ACTIVE ','background: #222; color: lime; font-weight: bold; font-size: 20px;')}</script>
+	<script>const MathUtils={lineEq:(e,s,t,i,o)=>{const l=(e-s)/(t-i);return l*o+(s-l*i)},lerp:(e,s,t)=>(1-t)*e+t*s,getRandomFloat:(e,s)=>(Math.random()*(s-e)+e).toFixed(2)},body=document.body,docEl=document.documentElement;let winsize;const calcWinsize=()=>winsize={width:window.innerWidth,height:window.innerHeight};calcWinsize(),window.addEventListener("resize",calcWinsize);const getMousePos=s=>{let t=0,i=0;return s||(e=window.event),s.pageX||s.pageY?(t=s.pageX,i=s.pageY):(s.clientX||s.clientY)&&(t=s.clientX+body.scrollLeft+docEl.scrollLeft,i=s.clientY+body.scrollTop+docEl.scrollTop),{x:t,y:i}};let mousepos={x:winsize.width/2,y:winsize.height/2};window.addEventListener("mousemove",e=>mousepos=getMousePos(e));class Cursor{constructor(e){this.DOM={el:e},this.DOM.circle=this.DOM.el.querySelector(".cursor__inner--circle"),this.bounds=this.DOM.circle.getBoundingClientRect(),this.lastMousePos={x:0,y:0},this.scale=1,this.lastScale=1,this.lastY=0,requestAnimationFrame(()=>this.render())}render(){this.lastMousePos.x=MathUtils.lerp(this.lastMousePos.x,mousepos.x-this.bounds.width/2,.15),this.lastMousePos.y=MathUtils.lerp(this.lastMousePos.y,mousepos.y-this.bounds.height/2,.15),this.direction=this.lastY-mousepos.y>0?"up":"down",this.lastScale=MathUtils.lerp(this.lastScale,this.scale,.15),this.DOM.circle.style.transform=`translateX(${this.lastMousePos.x}px) translateY(${this.lastMousePos.y}px) scale(${this.lastScale})`,this.lastY=mousepos.y,requestAnimationFrame(()=>this.render())}enter(){this.scale=2.1}leave(){this.scale=1}click(){this.lastScale=.4}}const cursor=new Cursor(document.querySelector(".cursor"));[...document.querySelectorAll("a")].forEach(e=>{e.addEventListener("mouseenter",()=>cursor.enter()),e.addEventListener("mouseleave",()=>cursor.leave())}),document.addEventListener("click",()=>cursor.click())</script>
+	<script>
+	const socket = io();
+
+    socket.on('confetti', cords => { 
+		alienConfetti(cords) 
+	});
+
+	window.addEventListener("click", confettiClick);
+
+	function confettiClick(e) {	
+		let wp = e.x / window.innerWidth;
+		let hp = e.y / window.innerHeight;
+		let cords = [];
+		cords.push(wp, hp, socket.id);
+
+		confetti({
+			particleCount: 96,
+			startVelocity: 36,
+			spread: 360,
+			gravity: -.4,
+			ticks: 50,
+			scalar: .4,
+			colors: ['#e17ab3', '#1af4e2'],
+			origin: {
+				x: wp,
+				y: hp
+			}
+		});
+
+    	socket.emit('confetti', cords)    
+	}
+
+	function alienConfetti(coordinates) {	
+		console.log(coordinates[2]);
+		if(coordinates[2] != socket.id) {
+			confetti({
+			particleCount: 96,
+			startVelocity: 36,
+			spread: 360,
+			gravity: -.4,
+			ticks: 50,
+			scalar: .4,
+			colors: ['#ff0000'],
+			origin: {
+				x: coordinates[0],
+				y: coordinates[1]
+				}
+			});
+		} 
+	}
+	</script>
+
+</body>
+</html>
